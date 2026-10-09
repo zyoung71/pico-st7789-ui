@@ -8,9 +8,10 @@ typedef struct st7789_config st7789_config_t;
 }
 
 #include <interactive-ui/DisplayInterface.hpp>
+#include <util/SPIDevice.hpp>
 #include <hardware/PulseWidthModulation.hpp>
 
-class ST7789 : public DisplayInterface
+class ST7789 : public DisplayInterface, public SPIDevice
 {
 protected:
     const Vec2i32 screen_dimensions;

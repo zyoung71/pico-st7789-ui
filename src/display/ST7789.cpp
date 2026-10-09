@@ -7,7 +7,7 @@ extern "C"
 }
 
 ST7789::ST7789(int32_t width, int32_t height, uint8_t din_pin, uint8_t clk_pin, uint8_t cs_pin, uint8_t dc_pin, uint8_t rst_pin, uint8_t bl_pin, spi_inst_t* spi_inst)
-    : screen_dimensions(width, height), pwm_brightness(bl_pin, 1000.f, 1.f)
+    : SPIDevice(clk_pin, din_pin, (uint8_t)255, cs_pin), screen_dimensions(width, height), pwm_brightness(bl_pin, 1000.f, 1.f)
 {
     device.spi = spi_inst;
     device.gpio_din = din_pin;
@@ -22,7 +22,7 @@ ST7789::ST7789(int32_t width, int32_t height, uint8_t din_pin, uint8_t clk_pin, 
 }
 
 ST7789::ST7789(const Vec2i32& dimensions, uint8_t din_pin, uint8_t clk_pin, uint8_t cs_pin, uint8_t dc_pin, uint8_t rst_pin, uint8_t bl_pin, spi_inst_t* spi_inst)
-    : screen_dimensions(dimensions), pwm_brightness(bl_pin, 1000.f, 1.f)
+    : SPIDevice(clk_pin, din_pin, (uint8_t)255, cs_pin), screen_dimensions(dimensions), pwm_brightness(bl_pin, 1000.f, 1.f)
 {
     device.spi = spi_inst;
     device.gpio_din = din_pin;
